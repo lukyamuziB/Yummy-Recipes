@@ -25,12 +25,12 @@ class RegisterUser extends Component {
 
     onSubmit(values){
         console.log(values);
-        this.props.registerUser(values)
-        // , () => {
-        //     this.props.history.push("/");  
-        // });
+        this.props.registerUser(values, () => {
+            this.props.history.push("/login")
+        });
+ 
     }
-
+    
     render(){ 
         const {handleSubmit} = this.props;
         return(

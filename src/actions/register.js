@@ -7,8 +7,9 @@ export const REGISTER_USER = 'register_user';
 export const CREATE_CATEGORIES = 'create_categories';
 
 
-export default  function registerUser(values){
-    const request = axios.post(`${ROOT_URL}/auth/register`, values);
+export default  function registerUser(values, callback){
+    const request = axios.post(`${ROOT_URL}/auth/register`, values)
+    .then(() => callback());
 
     return {
         type: REGISTER_USER,
