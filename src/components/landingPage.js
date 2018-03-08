@@ -10,12 +10,11 @@ class LandingPage extends Component{
                 <div className="in-container">
                     <div className="inner">
                         <div className="buttons">
-                            
                         <Link to="login"> <button> login </button> </Link>
                         <Link to ="/register"> <button > register </button> </Link>
                         </div>
                         <div className="intro">
-                            <h3>Welcome mbwa gwe</h3>
+                            <h3>Yummy recipes</h3>
                         </div>
                     </div>
                 </div>
