@@ -1,17 +1,20 @@
 import axios from 'axios';
+import toastr from 'toastr';
 
-const ROOT_URL = 'http://127.0.0.1:5000/api';
+import {ROOT_URL} from '../index';
+import * as types from './actionTypes';
 
+export default  function registerUser(values, callback){
+    const request = axios.post(`${ROOT_URL}/auth/register`, values)
+    .then(() => callback())
+    .catch(xhr=>{
+        console.log(xhr.response.data.Error)
+        toastr.success(xhr.response.data.Error)
 
-export const REGISTER_USER = 'register_user';
-export const CREATE_CATEGORIES = 'create_categories';
-
-
-export default  function registerUser(values){
-    const request = axios.post(`${ROOT_URL}/auth/register`, values);
+    });
 
     return {
-        type: REGISTER_USER,
+        type: types.REGISTER_USER,
         payload: request
     };
 }
