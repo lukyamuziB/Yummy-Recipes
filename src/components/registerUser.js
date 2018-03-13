@@ -3,7 +3,7 @@ import {Field, reduxForm } from 'redux-form';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import registerUser from '../actions/register';
-
+~
 
 class RegisterUser extends Component {
 
@@ -65,6 +65,8 @@ class RegisterUser extends Component {
                                 component={this.renderField}
                             />
                             <button className="btn btn-primary" type="submit">Submit</button>
+                            <br/> Alreday Have an Account? 
+                            <Link to="/login"> Login Here </Link>
                     </form>
                 </div>
               </div>
@@ -90,10 +92,10 @@ function validate(values){
 
 export default reduxForm({
     validate,
-    form:'NewCategoryForm'
+    form:'RegisterForm'
     
 }) (
-    connect(null, {registerUser})(RegisterUser)
+    connect(null, {registerUser})
 );
 
 

@@ -1,6 +1,6 @@
 import * as types from '../actions/actionTypes';
 
-export default function loginReducer(state = {}, action) {
+export default function loginReducer(state = [], action) {
     switch (action.type) {
       case types.FAILED_LOGIN:
         return {
