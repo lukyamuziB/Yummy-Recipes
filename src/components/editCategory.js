@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {Link, withRouter} from 'react-router-dom';
+import {Link, withRouter, Redirect} from 'react-router-dom';
+
 import {connect} from 'react-redux';
 import {Field, reduxForm } from 'redux-form';
 // import { hashHistory } from 'react-router';
 
-import editCategories from '../actions/editCategoriesAction';
+import {editCategories} from '../actions/editCategoriesAction';
 
 
 class EditCategory extends Component{
@@ -40,10 +41,9 @@ class EditCategory extends Component{
     }
 
     onSubmit(values, id){
-        this.props.editCategories(values, this.props.id, () => {
-            this.props.history.push("/dashboard")
-        });
-
+        this.props.editCategories(values, this.props.id).then(() => 
+            this.props.history.push("/dashboard"));
+            window.location.reload()
     }
    
     render(){
@@ -108,5 +108,5 @@ export default reduxForm({
     form:'EditCategoryForm'
     
 }) (
-    connect(null,{editCategories})(withRouter(EditCategory))
+    connect(null,{editCategories})(EditCategory)
 );
