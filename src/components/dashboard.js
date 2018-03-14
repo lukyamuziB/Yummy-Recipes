@@ -7,7 +7,7 @@ import NoCategories from './noCategories';
 import CreateCategory from './createCategories';
 import EditCategory from './editCategory';
 import editCategory from '../actions/editCategoriesAction';
-
+import DeleteCategory from './deleteResource';
 
 const CategoryCard = (props)=> (
   <div>
@@ -26,7 +26,7 @@ const CategoryCard = (props)=> (
                     <p>{props.description}</p> <br/> <br/>
                     <i class="small material-icons blue-text text-darken-4">visibility</i>    
                     <a className="modal-trigger" href={`#modal${props.id}`}><i class="small material-icons blue-text text-darken-4"> edit </i></a>
-                    <i class="small material-icons red-text text-darken-4">delete</i>
+                    <a className="modal-trigger" href={`#modal2${props.id}`}><i class="small material-icons red-text text-darken-4">delete</i></a>
                   </div>
           </div>
   </div>
@@ -45,7 +45,6 @@ class Dashboard extends Component {
   render(){
      window.$(document).ready(function() {
       window.$('.modal').modal();
-      // window.location.reload();
   });
     const {categories} = this.props;  ``
         return(
@@ -72,6 +71,9 @@ class Dashboard extends Component {
                        id = {item.id}
                        names = {item.name}
                        descriptions = {item.description}
+                       />
+                       <DeleteCategory
+                       id = {item.id}
                        />
                       </div>
                     ): <div> <NoCategories/> </div>

@@ -7,4 +7,6 @@ export const NO_CATEGORIES = 'no_categories';
 export const CREATE_CATEGORIES_SUCCESS = "create_categories_success";
 export const CREATE_CATEGORIES_FAILURE = "create_categories_failure";
 export const EDIT_SUCCESSFUL = "edit_successful";
+export const DELETE_SUCCESSFUL = "delete_successful";
+
 

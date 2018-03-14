@@ -3,7 +3,7 @@ import {Field, reduxForm } from 'redux-form';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import registerUser from '../actions/register';
-~
+
 
 class RegisterUser extends Component {
 
@@ -95,7 +95,7 @@ export default reduxForm({
     form:'RegisterForm'
     
 }) (
-    connect(null, {registerUser})
+    connect(null, {registerUser})(RegisterUser)
 );
 
 
