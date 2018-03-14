@@ -59,6 +59,7 @@ class Login extends Component{
                             component={this.renderField}
                                 />
                             <button className="btn btn-primary" type="submit">login</button>
+                            <br/> Don't have an account yet?  <Link to="/register"> Register here </Link>
                         </form>
                 </div>
                 </div>

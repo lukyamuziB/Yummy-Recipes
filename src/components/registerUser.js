@@ -65,6 +65,8 @@ class RegisterUser extends Component {
                                 component={this.renderField}
                             />
                             <button className="btn btn-primary" type="submit">Submit</button>
+                            <br/> Alreday Have an Account? 
+                            <Link to="/login"> Login Here </Link>
                     </form>
                 </div>
               </div>
@@ -90,7 +92,7 @@ function validate(values){
 
 export default reduxForm({
     validate,
-    form:'NewCategoryForm'
+    form:'RegisterForm'
     
 }) (
     connect(null, {registerUser})(RegisterUser)
