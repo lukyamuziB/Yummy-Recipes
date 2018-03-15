@@ -23,7 +23,7 @@ export function fetchRecipes(id){
     return function(dispatch){
         return axios.get(`${ROOT_URL}/categories/${id}`, {headers})
         .then((response) => {
-            dispatch(recipesExist(response.data.recipes))
+            dispatch(recipesExist(response.data))
         })
         .catch((xhr) => {
             dispatch(recipesDontExist(xhr))

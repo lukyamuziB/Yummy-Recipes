@@ -2,26 +2,27 @@ import React, {Component} from 'react';
 import {connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 
-import _ from 'lodash';
-
 import {fetchRecipes} from '../actions/fetchRecipes';
 import CreateRecipe from './createRecipes';
 import EditRecipe from './editRecipe';
 import DeleteRecipe from './deleteRecipe';
+import Navbar from './navbar';
+import CategoryData from './categoryData';
+import CreateRecipes from './createRecipes2';
+
 
 
 const RecipesCard = (props) =>(
     <div>
     <div className="col s4">
-        <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-                <span class="card-title">{props.name}</span>
+        <div className="card blue-grey darken-1">
+            <div className="card-content white-text">
+                <span className="card-title">{props.name}</span>
                 <p>{props.description}</p>
             </div>
-            <div class="card-action">
+            <div className="card-action">
                 <a className="modal-trigger" href={`#modal3${props.id}`}>EDIT RECIPE</a>
-                <a className="modal-trigger" href={`#modal2${props.id}`}>DELETE RECIPE</a>
-                
+                <a className="modal-trigger" href={`#modal2${props.id}`}>DELETE RECIPE</a>    
             </div>
             </div>
     </div>
@@ -41,13 +42,17 @@ render(){
     window.$(document).ready(function() {
         window.$('.modal').modal();
     });
-    const {recipes} = this.props
-    console.log("mbwaaa", recipes)
+    const {recipes, category_name, category_id} = this.props
     return(
         <div>
             <div className="landing-container">
+             <Navbar/>
                 <div className="in-container">
                     <div className="container">
+                    <CategoryData
+                     id = {category_id}
+                     name = {category_name}
+                    />
                       <div className="row">
                     {
                         recipes && recipes.length > 0?
@@ -62,12 +67,18 @@ render(){
                                 <EditRecipe
                                 id = {item.id}
                                 category_id = {this.props.match.params.id}
+                                name = {item.name}
+                                description = {item.description}
                                 />
                                 <DeleteRecipe
                                 id = {item.id}
                                 />
+                                <CreateRecipes
+                                id = {category_id}
+                                category_name = {category_name}
+                                />
                             </div>
-                        ): <div> Nothing here yet....<br/>
+                        ): <div> Awww.. its too lonely here (; <br/>Lets add some recipes....<br/>
                               <Link to={`/create_recipes/${this.props.match.params.id}`}>create here </Link>
                          </div>
                     }
@@ -76,15 +87,17 @@ render(){
         </div>
       </div>
     </div>
-
-    );
-
+  );
 }
 }
+
 
 function mapStateToProps(state, ownProps){
+    const {recipes, name, id} = state.recipes
     return{
-        recipes:state.recipes
+        recipes:recipes,
+        category_name:name,
+        category_id:id
     }
 }
 

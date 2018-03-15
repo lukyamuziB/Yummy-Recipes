@@ -9,7 +9,6 @@ class DeleteCategory extends Component{
 
 deleteRecipes = (id) => {
     this.props.deleteRecipe(this.props.id).then(()=>
-        // this.props.history.push("/dashboard"))
         window.location.reload())
 }
 

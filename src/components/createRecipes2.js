@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Field, reduxForm } from 'redux-form';
-import createCategories from '../actions/createCategoriesAction';
+import {createRecipes} from '../actions/createRecipesAction'
 
-class CreateCategory extends Component{
+class CreateRecipes extends Component{
    
     renderField(field) {
         const{meta:{touched,error}} = field;
-        const className = `form-group %{touched && error ? 'has-dangetr':''}`
+        const className = `form-group %{touched && error ? 'has-danger':''}`
         return(
             <div className={className}>
             <lable>{field.label}</lable>
@@ -24,25 +24,25 @@ class CreateCategory extends Component{
 
 
     onSubmit(values){
-        console.log(values);
-        this.props.createCategories(values)
-        .then(() => this.props.history.push("/dashboard"));
-        window.location.reload()
+        const id = this.props.id
+        const newValues = Object.assign({}, values, { category_id: id });
+        this.props.createRecipes(newValues)
+        .then(() => {this.props.history.push(`/view_recipes/${this.props.id}`)
+                // window.location.reload()
+            })
     }
    
     render(){
         const {handleSubmit} = this.props;
 
-        return(
+        return(   
             <div>
-                 add category 
-            <div>
-              
-            <a className="btn-floating btn-large waves-effect waves-light green modal-trigger pulse" href="#modal1"> <i class="material-icons">add</i></a>
-             <div id="modal1" className="modal modal-fixed-footer">
+            <div>   
+            {/* <a className="btn-floating btn-large waves-effect waves-light green modal-trigger pulse" href="#modal1"> <i class="material-icons">add</i></a> */}
+             <div id={`modal4${this.props.id}`} className="modal modal-fixed-footer">
                <div className="modal-content">
                <div className="conatiner">
-                    <h5> Create New Category </h5>
+                    <h5> Add Recipe to {this.props.category_name} Category</h5>
                     <form onSubmit = {handleSubmit(this.onSubmit.bind(this))}>
                     <Field
                         label="Name"
@@ -56,10 +56,10 @@ class CreateCategory extends Component{
                         type="text"
                         component={this.renderField}
                         />
-                        <button type="submit"> Create </button>
+                        <button type="submit"> Create Recipe </button>
                         </form>
                     <div className="modal-footer">
-                        <Link to="/dashboard" className="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</Link>
+                        <p className="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</p>
                     </div>
               </div>
             </div>
@@ -86,9 +86,9 @@ function validate(values){
 
 export default reduxForm({
     validate,
-    form:'NewCategoryForm'
+    form:'NewRecipeForm'
     
 }) (
-    connect(null, {createCategories})
-    (withRouter(CreateCategory))
+    connect(null, {createRecipes})
+    (withRouter(CreateRecipes))
 );

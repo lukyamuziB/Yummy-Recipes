@@ -31,7 +31,6 @@ ReactDOM.render(
                 <Route exact path="/" component={LandingPage} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
-                <Navbar/>
                 <Route exact path='/dashboard' component={Dashboard} />
                 <Route exact path="/view_recipes/:id" component={Recipes} />
                 <Route exact path="/create_recipes/:id" component={CreateRecipe} />
