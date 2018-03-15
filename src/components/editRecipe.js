@@ -6,21 +6,20 @@ import {Field, reduxForm } from 'redux-form';
 
 import {editRecipes} from '../actions/editRecipesAction';
 
-
 class EditRecipe extends Component{
     
-    constructor(props){
-        super(props.category);
-        if (props.category){
-            this.state = props.category
-        }else{
-            this.state={
-            name:'',
-            description:''
-            }
-        }
-        
-    }
+    componentDidMount() {
+        this.handleInitialize();
+      }
+
+      handleInitialize() {
+        const initData = {
+          "name": this.props.name,
+          "description": this.props.description
+        };
+    
+        this.props.initialize(initData);
+      }
    
     renderField(field) {
         const{meta:{touched,error}} = field;
@@ -47,14 +46,13 @@ class EditRecipe extends Component{
    
     render(){
         const {handleSubmit} = this.props;
-        console.log("bennnn", this.props.category_id)
         return(
             <div>
             <div>
              <div id={`modal3${this.props.id}`} className="modal modal-fixed-footer">
                <div className="modal-content">
-               <h3> Edit Recipe {this.props.id} </h3>
-               <form onSubmit = {handleSubmit(this.onSubmit.bind(this))}>
+               <h3> Edit Recipe </h3>
+               <form initialValues={{ "name": "US" }} onSubmit = {handleSubmit(this.onSubmit.bind(this))}>
                <Field
                 label="Name"
                 name="name"
@@ -69,7 +67,7 @@ class EditRecipe extends Component{
                 value={this.props.descriptions}
                 component={this.renderField}
                 />
-                <button type="submit"> Create </button>
+                <button type="submit"> Update Recipe </button>
                 </form>
               <div className="modal-footer">
                  <p className="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</p>
@@ -96,16 +94,9 @@ function validate(values){
 }
 
 
-function mapStateToProps(state, ownProps){
-    return{
-      categories:state.categories
-    }
-  }
-
-
 export default reduxForm({
     validate,
-    form:'EditRecipeForm'
+    form:'EditRecipeForm',
     
 }) (
     connect(null,{editRecipes})(EditRecipe)

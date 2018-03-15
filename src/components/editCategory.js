@@ -7,19 +7,20 @@ import {Field, reduxForm } from 'redux-form';
 import {editCategories} from '../actions/editCategoriesAction';
 
 class EditCategory extends Component{
+
+    componentDidMount() {
+        this.handleInitialize();
+      }
+
+     handleInitialize() {
+        const initData = {
+          "name": this.props.name,
+          "description": this.props.description
+        };
     
-    constructor(props){
-        super(props.category);
-        if (props.category){
-            this.state = props.category
-        }else{
-            this.state={
-            name:'',
-            description:''
-            }
-        }
-    }
-   
+        this.props.initialize(initData);
+      }
+    
     renderField(field) {
         const{meta:{touched,error}} = field;
         const className = `form-group %{touched && error ? 'has-dangetr':''}`
@@ -35,6 +36,7 @@ class EditCategory extends Component{
            </div>
         );
     }
+    
 
     onSubmit(values, id){
         this.props.editCategories(values, this.props.id).then(() => 
@@ -43,7 +45,7 @@ class EditCategory extends Component{
     }
    
     render(){
-        const {handleSubmit} = this.props;
+        const { handleSubmit} = this.props;   
         return(
             <div>
             <div>
@@ -55,20 +57,18 @@ class EditCategory extends Component{
                 label="Name"
                 name="name"
                 type="text"
-                value={this.props.names}
                 component={this.renderField}
                 />
                 <Field
                 label="Description"
                 name="description"
                 type="text"
-                value={this.props.descriptions}
                 component={this.renderField}
                 />
-                <button type="submit"> Create </button>
+                <button type="submit"> Update Category </button>
                 </form>
               <div className="modal-footer">
-                <Link to="/dashboard" className="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</Link>
+                <p className="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</p>
               </div>
             </div>
          </div>
@@ -90,13 +90,6 @@ function validate(values){
         errors.content = "Enter some content";
     }
 }
-
-
-function mapStateToProps(state, ownProps){
-    return{
-      categories:state.categories
-    }
-  }
 
 
 export default reduxForm({
