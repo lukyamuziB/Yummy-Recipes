@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect } from 'react-redux';
+import {Link} from 'react-router-dom';
 import _ from 'lodash';
 
 import {fetchCategories} from '../actions/fetchCategories';
@@ -8,29 +9,32 @@ import CreateCategory from './createCategories';
 import EditCategory from './editCategory';
 import editCategory from '../actions/editCategoriesAction';
 import DeleteCategory from './deleteResource';
+import Recipes from './recipesPage';
+
 
 const CategoryCard = (props)=> (
   <div>
- 
-  <div className="col s4">
-          <div className="card" >
-                  <div className="card-image waves-effect waves-block waves-light">
-                    <img className="activator" src={"http://alluretouch.com/wp-content/uploads/2015/09/spoon-of-coffee.jpg" } />
-                  </div>
-                  <div className="card-content">
-                    <span className="card-title activator grey-text text-darken-4"> {props.name} <i className="material-icons right">more_vert</i></span>
-                    <p><a href="#">This is a link</a></p>
-                  </div>
-                  <div className="card-reveal">
-                    <span className="card-title grey-text text-darken-4">{props.name}<i className="material-icons right">close</i></span>
-                    <p>{props.description}</p> <br/> <br/>
-                    <i class="small material-icons blue-text text-darken-4">visibility</i>    
-                    <a className="modal-trigger" href={`#modal${props.id}`}><i class="small material-icons blue-text text-darken-4"> edit </i></a>
-                    <a className="modal-trigger" href={`#modal2${props.id}`}><i class="small material-icons red-text text-darken-4">delete</i></a>
-                  </div>
-          </div>
-  </div>
-    
+    <div className="col s4">
+            <div className="card" >
+                    <div className="card-image waves-effect waves-block waves-light">
+                      <img className="activator" src={"http://alluretouch.com/wp-content/uploads/2015/09/spoon-of-coffee.jpg" } />
+                    </div>
+                    <div className="card-content">
+                      <span className="card-title activator grey-text text-darken-4"> {props.name} <i className="material-icons right">more_vert</i></span>
+                      <p><a href="#">This is a link</a></p>
+                    </div>
+                    <div className="card-reveal">
+                      <span className="card-title grey-text text-darken-4">{props.name}<i className="material-icons right">close</i></span>
+                      <p>{props.description}</p> 
+                      <div className="card-icons">
+                      <Link to={`view_recipes/${props.id}`}> <i class="small material-icons blue-text text-darken-4">visibility</i> </Link>
+                      <Link to={`create_recipes/${props.id}`}> <i class="small material-icons blue-text text-darken-4"> add_circle </i> </Link>
+                      <a className="modal-trigger" href={`#modal${props.id}`}><i class="small material-icons blue-text text-darken-4"> edit </i></a>
+                      <a className="modal-trigger" href={`#modal2${props.id}`}><i class="small material-icons red-text text-darken-4">delete</i></a>
+                    </div>
+                    </div>
+            </div>
+    </div>
 </div>     
 );
 
@@ -49,16 +53,16 @@ class Dashboard extends Component {
     const {categories} = this.props;  ``
         return(
           <div>
+
              <div> 
-            
-           <CreateCategory/>
+               <CreateCategory/>
              </div>
              <div className="landing-container">
               <div className="in-container">
                 <div className="container">
                 <div className="row">
                     { 
-                      categories ?
+                      categories && categories.length>0 ?
                       categories.map(item =>
                         <div>
                       < CategoryCard 

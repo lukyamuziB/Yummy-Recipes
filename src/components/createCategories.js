@@ -35,30 +35,35 @@ class CreateCategory extends Component{
 
         return(
             <div>
-                
-            <a className="waves-effect waves-light btn modal-trigger" href="#modal1"> Modal</a>
-          
+                 add category 
+            <div>
+              
+            <a className="btn-floating btn-large waves-effect waves-light green modal-trigger" href="#modal1"> <i class="material-icons">add</i></a>
              <div id="modal1" className="modal modal-fixed-footer">
                <div className="modal-content">
-               <form onSubmit = {handleSubmit(this.onSubmit.bind(this))}>
-               <Field
-                label="Name"
-                name="name"
-                type="text"
-                component={this.renderField}
-                />
-                <Field
-                label="Description"
-                name="description"
-                type="text"
-                component={this.renderField}
-                />
-                <button type="submit"> Create </button>
-                </form>
-              <div className="modal-footer">
-                <Link to="/dashboard" className="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</Link>
+               <div className="conatiner">
+                    <h5> Create New Category </h5>
+                    <form onSubmit = {handleSubmit(this.onSubmit.bind(this))}>
+                    <Field
+                        label="Name"
+                        name="name"
+                        type="text"
+                        component={this.renderField}
+                        />
+                        <Field
+                        label="Description"
+                        name="description"
+                        type="text"
+                        component={this.renderField}
+                        />
+                        <button type="submit"> Create </button>
+                        </form>
+                    <div className="modal-footer">
+                        <Link to="/dashboard" className="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</Link>
+                    </div>
               </div>
             </div>
+         </div>
          </div>
          </div>
      );

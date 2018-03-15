@@ -4,9 +4,10 @@ import {connect} from 'react-redux';
 import {Field, reduxForm } from 'redux-form';
 
 
-import {editCategories} from '../actions/editCategoriesAction';
+import {editRecipes} from '../actions/editRecipesAction';
 
-class EditCategory extends Component{
+
+class EditRecipe extends Component{
     
     constructor(props){
         super(props.category);
@@ -18,6 +19,7 @@ class EditCategory extends Component{
             description:''
             }
         }
+        
     }
    
     renderField(field) {
@@ -37,19 +39,21 @@ class EditCategory extends Component{
     }
 
     onSubmit(values, id){
-        this.props.editCategories(values, this.props.id).then(() => 
-            this.props.history.push("/dashboard"));
+        console.log(values)
+        this.props.editRecipes(values, this.props.id).then(() => 
+            this.props.history.push(`/view_recipes/${this.props.category_id}`));
             window.location.reload()
     }
    
     render(){
         const {handleSubmit} = this.props;
+        console.log("bennnn", this.props.category_id)
         return(
             <div>
             <div>
-             <div id={`modal${this.props.id}`} className="modal modal-fixed-footer">
+             <div id={`modal3${this.props.id}`} className="modal modal-fixed-footer">
                <div className="modal-content">
-               <h3> Edit Category {this.props.id} </h3>
+               <h3> Edit Recipe {this.props.id} </h3>
                <form onSubmit = {handleSubmit(this.onSubmit.bind(this))}>
                <Field
                 label="Name"
@@ -68,7 +72,7 @@ class EditCategory extends Component{
                 <button type="submit"> Create </button>
                 </form>
               <div className="modal-footer">
-                <Link to="/dashboard" className="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</Link>
+                 <p className="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</p>
               </div>
             </div>
          </div>
@@ -101,8 +105,8 @@ function mapStateToProps(state, ownProps){
 
 export default reduxForm({
     validate,
-    form:'EditCategoryForm'
+    form:'EditRecipeForm'
     
 }) (
-    connect(null,{editCategories})(EditCategory)
+    connect(null,{editRecipes})(EditRecipe)
 );

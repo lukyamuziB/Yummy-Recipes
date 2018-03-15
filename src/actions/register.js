@@ -8,7 +8,7 @@ export default  function registerUser(values, callback){
     const request = axios.post(`${ROOT_URL}/auth/register`, values)
     .then(() => callback())
     .catch(xhr=>{
-        console.log(xhr.response.data.Error)
+
         toastr.success(xhr.response.data.Error)
 
     });

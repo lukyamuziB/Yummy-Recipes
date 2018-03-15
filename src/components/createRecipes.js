@@ -1,25 +1,10 @@
 import React, {Component} from 'react';
-import {Link, withRouter, Redirect} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Field, reduxForm } from 'redux-form';
+import {createRecipes} from '../actions/createRecipesAction'
 
-
-import {editCategories} from '../actions/editCategoriesAction';
-
-class EditCategory extends Component{
-    
-    constructor(props){
-        super(props.category);
-        if (props.category){
-            this.state = props.category
-        }else{
-            this.state={
-            name:'',
-            description:''
-            }
-        }
-    }
-   
+class CreateRecipe extends Component{
     renderField(field) {
         const{meta:{touched,error}} = field;
         const className = `form-group %{touched && error ? 'has-dangetr':''}`
@@ -36,46 +21,49 @@ class EditCategory extends Component{
         );
     }
 
-    onSubmit(values, id){
-        this.props.editCategories(values, this.props.id).then(() => 
-            this.props.history.push("/dashboard"));
-            window.location.reload()
+    onSubmit(values){
+        const id = parseInt(this.props.match.params.id, 10)
+        const newValues = Object.assign({}, values, { category_id: id });
+        this.props.createRecipes(newValues)
+        .then(() => {this.props.history.push("/dashboard")
+                window.location.reload()
+            })
     }
    
     render(){
         const {handleSubmit} = this.props;
         return(
             <div>
-            <div>
-             <div id={`modal${this.props.id}`} className="modal modal-fixed-footer">
-               <div className="modal-content">
-               <h3> Edit Category {this.props.id} </h3>
+            <div className="landing-container">
+              <div className="in-container">
+              <div className="inner">
+                <div className="container">
                <form onSubmit = {handleSubmit(this.onSubmit.bind(this))}>
                <Field
                 label="Name"
                 name="name"
                 type="text"
-                value={this.props.names}
                 component={this.renderField}
                 />
                 <Field
                 label="Description"
                 name="description"
                 type="text"
-                value={this.props.descriptions}
                 component={this.renderField}
                 />
-                <button type="submit"> Create </button>
+                <button type="submit"> Create </button>  
+    
+                    <Link to="/dashboard" className="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</Link>
                 </form>
-              <div className="modal-footer">
-                <Link to="/dashboard" className="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</Link>
+             
+                </div>
+                </div>
+                </div>
               </div>
             </div>
-         </div>
-         </div>
-         </div>
      );
     }
+    
 }
 
 function validate(values){
@@ -91,18 +79,17 @@ function validate(values){
     }
 }
 
-
 function mapStateToProps(state, ownProps){
     return{
-      categories:state.categories
+        recipes:state.recipes
     }
-  }
+}
 
 
 export default reduxForm({
     validate,
-    form:'EditCategoryForm'
+    form:'NewRecipeForm'
     
 }) (
-    connect(null,{editCategories})(EditCategory)
+    connect(mapStateToProps, {createRecipes})(CreateRecipe)
 );

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import CraeteCategory from './createCategories';
 
 class NoCategories extends Component{
     render(){
@@ -6,7 +7,7 @@ class NoCategories extends Component{
             <div className="landing-container">
                 <div className="in-container">
                 <h2> You don't have any categories yet! </h2>
-                <button>Create Some </button>
+                <CraeteCategory/>
              </div>
             </div>
         );
