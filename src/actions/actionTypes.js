@@ -8,5 +8,10 @@ export const CREATE_CATEGORIES_SUCCESS = "create_categories_success";
 export const CREATE_CATEGORIES_FAILURE = "create_categories_failure";
 export const EDIT_SUCCESSFUL = "edit_successful";
 export const DELETE_SUCCESSFUL = "delete_successful";
-
-
+export const FETCH_RECIPES_SUCCESSFUL = "fetch_recipes_successful";
+export const FETCH_RECIPES_UNSUCCESSFUL = "fetch_recipes_unsuccessful";
+export const CREATE_RECIPES_SUCCESS = "create_recipes_success";
+export const SUCCESSFUL_LOGOUT = "successful_logout";
+export const EDIT_RECIPE_SUCCESSFUL = "edit_recipe_successful";
+export const DELETE_CATEGORY_SUCCESSFUL = "delete_category_successful"
+export const DELETE_RECIPE_SUCCESSFUL = "delete_recipe_successful"

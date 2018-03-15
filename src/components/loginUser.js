@@ -2,7 +2,7 @@ import React , {Component} from 'react';
 import {Field, reduxForm } from 'redux-form';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {login} from '../actions/login';
+import {login} from '../actions/userAuth';
 import {bindActionCreators} from 'redux';
 
 class Login extends Component{
@@ -44,7 +44,9 @@ class Login extends Component{
               <div className="landing-container">
                 <div className="in-container">
                 <div className="inner">
-                    <p> Login Here</p>
+                <div className="container">
+                   <div className="container">
+                   <h5> Login Here</h5>
                         <form onSubmit = {handleSubmit(this.onSubmit.bind(this))}>
                             <Field
                             label="Username"
@@ -58,9 +60,11 @@ class Login extends Component{
                             type="password"
                             component={this.renderField}
                                 />
-                            <button className="btn btn-primary" type="submit">login</button>
+                            <button className="btn btn-primary" type="submit">login</button> <br/>
                             <br/> Don't have an account yet?  <Link to="/register"> Register here </Link>
                         </form>
+                    </div>
+                    </div>
                 </div>
                 </div>
               </div>

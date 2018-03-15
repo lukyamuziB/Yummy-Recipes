@@ -19,12 +19,12 @@ export function categoriesExist(result){
 
 const headers = {Authorization: `Bearer ${localStorage.getItem('token')}`};
 
-export function fetchCategories(){
+export function fetchCategories(params=''){
     
     return function(dispatch){
-        return axios.get(`${ROOT_URL}/categories`, {headers})
+        return axios.get(`${ROOT_URL}/categories${params}`, {headers})
         .then((response) => {
-            dispatch(categoriesExist(response.data.items))
+            dispatch(categoriesExist(response.data))
         })
         .catch((xhr) => {
             dispatch(categoriesDontExist(xhr))

@@ -4,15 +4,15 @@ import {connect} from 'react-redux';
 import {Field, reduxForm } from 'redux-form';
 
 
-import {editCategories} from '../actions/editCategoriesAction';
+import {editRecipes} from '../actions/editRecipesAction';
 
-class EditCategory extends Component{
-
+class EditRecipe extends Component{
+    
     componentDidMount() {
         this.handleInitialize();
       }
 
-     handleInitialize() {
+      handleInitialize() {
         const initData = {
           "name": this.props.name,
           "description": this.props.description
@@ -20,7 +20,7 @@ class EditCategory extends Component{
     
         this.props.initialize(initData);
       }
-    
+   
     renderField(field) {
         const{meta:{touched,error}} = field;
         const className = `form-group %{touched && error ? 'has-dangetr':''}`
@@ -36,39 +36,41 @@ class EditCategory extends Component{
            </div>
         );
     }
-    
 
     onSubmit(values, id){
-        this.props.editCategories(values, this.props.id).then(() => 
-            this.props.history.push("/dashboard"));
+        console.log(values)
+        this.props.editRecipes(values, this.props.id).then(() => 
+            this.props.history.push(`/view_recipes/${this.props.category_id}`));
             window.location.reload()
     }
    
     render(){
-        const { handleSubmit} = this.props;   
+        const {handleSubmit} = this.props;
         return(
             <div>
             <div>
-             <div id={`modal${this.props.id}`} className="modal modal-fixed-footer">
+             <div id={`modal3${this.props.id}`} className="modal modal-fixed-footer">
                <div className="modal-content">
-               <h3> Edit Category {this.props.id} </h3>
-               <form onSubmit = {handleSubmit(this.onSubmit.bind(this))}>
+               <h3> Edit Recipe </h3>
+               <form initialValues={{ "name": "US" }} onSubmit = {handleSubmit(this.onSubmit.bind(this))}>
                <Field
                 label="Name"
                 name="name"
                 type="text"
+                value={this.props.names}
                 component={this.renderField}
                 />
                 <Field
                 label="Description"
                 name="description"
                 type="text"
+                value={this.props.descriptions}
                 component={this.renderField}
                 />
-                <button type="submit"> Update Category </button>
+                <button type="submit"> Update Recipe </button>
                 </form>
               <div className="modal-footer">
-                <p className="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</p>
+                 <p className="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</p>
               </div>
             </div>
          </div>
@@ -94,8 +96,8 @@ function validate(values){
 
 export default reduxForm({
     validate,
-    form:'EditCategoryForm'
+    form:'EditRecipeForm',
     
 }) (
-    connect(null,{editCategories})(EditCategory)
+    connect(null,{editRecipes})(EditRecipe)
 );
