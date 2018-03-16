@@ -1,4 +1,5 @@
 import axios from 'axios';
+import toastr from 'toastr';
 
 
 import {ROOT_URL} from '../index';
@@ -14,13 +15,29 @@ export function editSuccessful(values){
     }
 }
 
+export function editUnsuccessful(values){
+    return {
+        type:types.EDIT_UNSUCCESSFUL,
+        payload: values
+    }
+}
+
 
 export  function editCategories(values, id){
     
     return function(dispatch){
         return axios.put(`${ROOT_URL}/categories/${id}`, values, {headers})
         .then((response) => {
+            toastr.info(response.response.data.Message)
             dispatch(editSuccessful(response.data));
+        })
+        .catch((error) => {
+            if(error.response){
+                toastr.info(error.response.data.Error)
+                dispatch(editUnsuccessful(error))
+                throw(error)
+            }
+            
         });
         
     }

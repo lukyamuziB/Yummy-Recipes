@@ -4,6 +4,9 @@ import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {login} from '../actions/userAuth';
 import {bindActionCreators} from 'redux';
+import toastr from 'toastr'
+
+
 
 class Login extends Component{
     
@@ -24,11 +27,9 @@ class Login extends Component{
     }
 
     onSubmit(values){
-        console.log(values)
-        console.log(this.props.actions)
-        console.log(this.props.login)
         this.props.login(values).then(() =>{
             this.props.history.push("/dashboard");
+            window.location.reload()
         });    
     }
 
@@ -40,7 +41,7 @@ class Login extends Component{
         //   }
 
         return(
-            <div>
+            <div id="Login">
               <div className="landing-container">
                 <div className="in-container">
                 <div className="inner">

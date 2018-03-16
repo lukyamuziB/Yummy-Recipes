@@ -6,8 +6,7 @@ class NoCategories extends Component{
         return(
             <div className="landing-container">
                 <div className="in-container">
-                <h2> You don't have any categories yet! </h2>
-                <CraeteCategory/>
+                <h2> Ooopss.... <br/> You don't have any categories yet! </h2>
              </div>
             </div>
         );

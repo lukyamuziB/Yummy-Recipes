@@ -28,7 +28,7 @@ class CreateRecipes extends Component{
         const newValues = Object.assign({}, values, { category_id: id });
         this.props.createRecipes(newValues)
         .then(() => {this.props.history.push(`/view_recipes/${this.props.id}`)
-                // window.location.reload()
+                window.location.reload()
             })
     }
    
