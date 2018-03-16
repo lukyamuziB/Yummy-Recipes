@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {render}from 'react-dom';
 import {BrowserRouter, Route} from 'react-router-dom';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
@@ -24,7 +24,7 @@ const store = createStore(rootReducer,
         applyMiddleware(thunk)
     ));
 
-ReactDOM.render(
+render(
     <Provider store={store}>
       <BrowserRouter>
             <div>

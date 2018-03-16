@@ -50,15 +50,13 @@ class Dashboard extends Component {
 
 
   render(){
-     window.$(document).ready(function() {
-      window.$('.modal').modal();
-  });
-    const {categories} = this.props;  ``
+       window.$(document).ready(function() {
+        window.$('.modal').modal();
+        });
+          const {categories} = this.props;  ``
         return(
           <div>
-
              <div> 
-               
              </div>
              <div className="landing-container">
              <Navbar/>

@@ -1,9 +1,19 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import {userLogout} from '../actions/userAuth'
+import {userLogout} from '../actions/userAuth';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 
 
 class Navbar extends Component {
+
+ logOutUser = () => {
+      this.props.userLogout()
+      .then(() => { 
+      localStorage.clear()
+      this.props.history.push("/") 
+   });   // window.location.reload()
+    }
 
     render(){
         return(
@@ -14,7 +24,7 @@ class Navbar extends Component {
                         <div className="nav-wrapper black-text text-darken-2">
                           <a href="/dashboard" className="brand-logo"><span className="black-text text-darken-2">Yummy Recipes </span></a>
                           <ul id="nav-mobile" className="right hide-on-med-and-down">
-                            <li> <Link to="#"> <span className="black-text text-darken-2">Logout</span> </Link> </li>
+                            <li> <button onClick={this.logOutUser}>  <span className="black-text text-darken-2">Logout</span> </button> </li>
                             <li> <Link to="/dashboard"><span className="black-text text-darken-2"> Home </span> </Link></li>
                           </ul>
                         </div>
@@ -26,4 +36,4 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar
+export default withRouter(connect(null, {userLogout})(Navbar));
