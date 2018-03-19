@@ -78,7 +78,6 @@ class Dashboard extends Component {
 
   searcher = () => {
     this.setState({ search: true });
-    console.log('nahh', this.state.search);
     this.props.fetchCategories('?q=');
   };
 

@@ -32,15 +32,10 @@ class Pagination extends Component {
   }
 
     toNextPage = () => {
-      console.log('hjnjfbdvfbdsuvbiufvfhdfbhb');
       const { page, type } = this.props;
       const nextPage = page + 1;
       if (type === 'categories') {
-        console.log(nextPage);
-        fetchCategories(`?page=${nextPage}`);
-        console.log('type');
-      } else {
-        fetchRecipes();
+        this.props.fetchCategories(`?page=${nextPage}`);
       }
     }
 
@@ -48,9 +43,7 @@ class Pagination extends Component {
       const { page, type } = this.props;
       const previousPage = page - 1;
       if (type === 'categories') {
-        fetchCategories(`?page=${previousPage}`);
-      } else {
-        fetchRecipes();
+        this.props.fetchCategories(`?page=${previousPage}`);
       }
     }
 

@@ -41,7 +41,7 @@ class Recipes extends Component {
       recipe: [],
       search: false,
     };
-    // this.clearr = this.clearr.bind(this);
+    this.clearr = this.clearr.bind(this);
   }
 
   searcher = () => {
@@ -60,6 +60,13 @@ class Recipes extends Component {
       )
       .map(recipe => recipe);
     this.setState({ recipe: recipesToBeUsed });
+  };
+
+  clearr = () => {
+    const id = this.props.match.params.id;
+    this.setState({ search: false });
+    console.log('blaaaah');
+    this.props.fetchRecipes(id);
   };
 
   componentDidMount() {
@@ -156,9 +163,9 @@ class Recipes extends Component {
                           />
                         </div>,
                       ) :
-                      <div> <h3>Awww.. its too lonely here (; </h3><br />
+                      <div> <h5>Awww.. its too lonely here (; </h5><br />
                         <h4>
-                        Lets add some recipes....
+                        Either you haven't created any recipes or no recipes match you query
                         </h4><br />
                         <CreateRecipes
                           id={categoryId}
