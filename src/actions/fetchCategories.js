@@ -1,36 +1,34 @@
 import axios from 'axios';
-import toastr from 'toastr';
 
-import {ROOT_URL} from '../index';
+import { ROOT_URL } from '../index';
 import * as types from '../actions/actionTypes';
 
 export function categoriesDontExist(result) {
-    return {
-        type:types.NO_CATEGORIES,
-        result
-    }
+  return {
+    type: types.NO_CATEGORIES,
+    result,
+  };
 }
 
-export function categoriesExist(result){
-    return {
-        type:types.FETCH_CATEGORIES,
-        payload:result
-    }
+export function categoriesExist(result) {
+  return {
+    type: types.FETCH_CATEGORIES,
+    payload: result,
+  };
 }
 
-const headers = {Authorization: `Bearer ${localStorage.getItem('token')}`};
+const headers = { Authorization: `Bearer ${localStorage.getItem('token')}` };
 
-export function fetchCategories(params=''){
-    
-    return function(dispatch){
-        return axios.get(`${ROOT_URL}/categories${params}`, {headers})
-        .then((response) => {
-            dispatch(categoriesExist(response.data))
-        })
-        .catch((error) => {
-            if(error.response){
-            dispatch(categoriesDontExist(error))
-            }
-        });
-    };
+export function fetchCategories(params = '') {
+  return function (dispatch) {
+    return axios.get(`${ROOT_URL}/categories${params}`, { headers })
+      .then((response) => {
+        dispatch(categoriesExist(response.data));
+      })
+      .catch((error) => {
+        if (error.response) {
+          dispatch(categoriesDontExist(error));
+        }
+      });
+  };
 }
