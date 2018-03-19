@@ -26,8 +26,9 @@ class CreateCategory extends Component{
     onSubmit(values){
         console.log(values);
         this.props.createCategories(values)
-        .then(() => this.props.history.push("/dashboard"));
-        window.location.reload()
+        .then(() => {
+            this.props.history.push("/dashboard")});
+        // window.location.reload()
     }
    
     render(){

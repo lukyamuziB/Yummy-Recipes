@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 
@@ -10,7 +10,7 @@ class DeleteCategory extends Component{
 deleteCategories = (id) => {
     this.props.deleteCategory(this.props.id).then(()=>
         this.props.history.push("/dashboard"))
-        window.location.reload()
+        // window.location.reload()
 }
 
     render(){
@@ -29,4 +29,4 @@ deleteCategories = (id) => {
     }
 }
 
-export default connect(null, {deleteCategory})(DeleteCategory)
+export default connect(null, {deleteCategory})(withRouter(DeleteCategory));

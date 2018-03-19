@@ -1,61 +1,71 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import {fetchCategories} from '../actions/fetchCategories';
+import { fetchCategories } from '../actions/fetchCategories';
+import { fetchRecipes } from '../actions/fetchRecipes';
 
-class Pagination extends Component{
-    
-    setClassPrevious(){
-        if(this.props.page == 1 &&  this.props.pages == 1){
-            return "waves-effect waves-light btn disabled"
-        }else if(this.props.page == 1 && this.props.pages > 1){
-            return "waves-effect waves-light btn disabled"
-        }else{
-            return "waves-effect waves-light btn"
-        }
+class Pagination extends Component {
+  constructor(props) {
+    super(props);
+    this.toNextPage = this.toNextPage.bind(this);
+    this.toPreviousPage = this.toPreviousPage.bind(this);
+  }
+
+  setClassPrevious() {
+    const { page, pages } = this.props;
+    if (page === 1 && pages === 1) {
+      return 'waves-effect waves-light btn disabled';
+    } else if (page === 1 && pages > 1) {
+      return 'waves-effect waves-light btn disabled';
+    } else {
+      return 'waves-effect waves-light btn';
+    }
+  }
+
+  setClassNext() {
+    const { page, pages } = this.props;
+    if (this.props.page === this.props.pages) {
+      return 'waves-effect waves-light btn disabled';
+    } else {
+      return 'waves-effect waves-light btn';
+    }
+  }
+
+    toNextPage = () => {
+      const { page, type } = this.props;
+      const nextPage = page + 1;
+      if (type === 'categories') {
+        this.props.fetchCategories(`?page=${nextPage}`);
+      }
     }
 
-    setClassNext(){
-        if(this.props.page == this.props.pages){
-            return "waves-effect waves-light btn disabled"
-        }else{
-            return "waves-effect waves-light btn"
-        }
+    toPreviousPage = () => {
+      const { page, type } = this.props;
+      const previousPage = page - 1;
+      if (type === 'categories') {
+        this.props.fetchCategories(`?page=${previousPage}`);
+      }
     }
 
-    nextPage = () => {
-            const {page} = this.props
-            let next_page = page+1
-            if (this.props.type == "categories"){
-            this.props.fetchCategories(`?page=${next_page}`)
-        }
-    }
-
-    previousPage = () => {
-            let previous_page = this.props.page-1
-            this.props.fetchCategories(`?page=${previous_page}`)
-    }
-    
-    render(){
-        console.log(this.props)
-        return(
-            <div>
-            <ul className="pagination">
-            <button onClick = {this.previousPage} className={this.setClassPrevious()}> <i class="material-icons left">arrow_back</i>Previous</button>
-            <button onClick = {this.nextPage} className={this.setClassNext()}><i class="material-icons right">arrow_forward</i>Next</button>
-            </ul>
-            </div>
-        );
+    render() {
+      return (
+        <div>
+          <ul className="pagination">
+            <button onClick={this.toPreviousPage} className={this.setClassPrevious()}> <i className="material-icons left">arrow_back</i>Previous</button>
+            <button onClick={this.toNextPage} className={this.setClassNext()}><i className="material-icons right">arrow_forward</i>Next</button>
+          </ul>
+        </div>
+      );
     }
 }
 
-function mapStateToProps(state, ownProps){
-    const {items, page, pages} = state.categories
-    return{
-      categories:items,
-      page:page,
-      pages:pages
-    }
-  }
-  
-  export default connect(mapStateToProps, {fetchCategories}) (Pagination);
+function mapStateToProps(state, ownProps) {
+  const { items, page, pages } = state.categories;
+  return {
+    categories: items,
+    page: page,
+    pages: pages,
+  };
+}
+
+export default connect(mapStateToProps, { fetchCategories })(Pagination);
