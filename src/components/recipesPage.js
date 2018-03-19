@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import toastr from 'toastr';
+import _ from 'lodash';
 
 import { fetchRecipes } from '../actions/fetchRecipes';
 import CreateRecipe from './createRecipes';
@@ -33,6 +34,34 @@ const RecipesCard = props => (
 
 
 class Recipes extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      query: false,
+      recipe: [],
+      search: false,
+    };
+    // this.clearr = this.clearr.bind(this);
+  }
+
+  searcher = () => {
+    this.setState({ search: true });
+    this.props.fetchRecipes('?q=');
+  };
+
+  queried = e => {
+    this.setState({ query: e.target.value || '' });
+  };
+
+  result = () => {
+    const recipesToBeUsed = this.props.recipes
+      .filter(recipe =>
+        _.toLower(recipe.name).includes(_.toLower(this.state.query || '')),
+      )
+      .map(recipe => recipe);
+    this.setState({ recipe: recipesToBeUsed });
+  };
+
   componentDidMount() {
     const id = this.props.match.params.id;
     this.props.fetchRecipes(id);
@@ -47,7 +76,17 @@ class Recipes extends Component {
     window.$(document).ready(function () {
       window.$('.modal').modal();
     });
-    const { recipes, categoryName, categoryId } = this.props;
+    const { categoryName, categoryId } = this.props;
+    let { recipes } = this.props;
+
+    if (this.state.search === true) {
+      recipes = this.state.recipe
+        .filter(recipe =>
+          _.toLower(recipe.name).includes(_.toLower(this.state.query || '')),
+        )
+        .map(recipe => recipe);
+    }
+
     return (
       <div>
         <div className="landing-container">
@@ -63,10 +102,29 @@ class Recipes extends Component {
                     />
                   </div>
                   <div className="col s4 ">
-                    <Search
-                      type={recipes}
-                      category_id={categoryId}
-                    />
+                    <form>
+                      <div className="row">
+                        <div className="input-field">
+                          <i className="material-icons prefix">search</i>
+                          <input
+                            onClick={this.searcher}
+                            onChange={this.queried}
+                            onInput={this.result}
+                            id="icon_prefix"
+                            type="search"
+                            className="validate"
+                          />
+                          <label htmlFor="icon_prefix">Search Categories</label>
+                        </div>
+                      </div>
+                    </form>
+                    <div>
+                      <button onClick={this.clearr} className="btn btn-samll blue">
+                        <i className="material-icons left">
+                          clear_all
+                        </i>Clear Search
+                      </button>
+                    </div>
                   </div>
                   <div />
                 </div>
