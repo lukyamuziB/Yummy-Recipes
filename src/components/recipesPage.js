@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect } from 'react-redux';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
+import toastr from 'toastr';
 
 import {fetchRecipes} from '../actions/fetchRecipes';
 import CreateRecipe from './createRecipes';
@@ -9,7 +10,8 @@ import DeleteRecipe from './deleteRecipe';
 import Navbar from './navbar';
 import CategoryData from './categoryData';
 import CreateRecipes from './createRecipes2';
-
+import Search from './search';
+import Pagination from './Pagination';
 
 
 const RecipesCard = (props) =>(
@@ -39,6 +41,11 @@ componentDidMount(){
     }
 
 render(){
+    if (localStorage.getItem('logedIn')) {
+        toastr.info("Login first to view your Recipes")
+        return <Redirect to="/login" />;
+      }
+
     window.$(document).ready(function() {
         window.$('.modal').modal();
     });
@@ -49,10 +56,23 @@ render(){
              <Navbar/>
                 <div className="in-container">
                     <div className="container">
-                    <CategoryData
-                     id = {category_id}
-                     name = {category_name}
-                    />
+                    <div> 
+                    <div className="row">
+                        <div className="col s8 ">
+                            <CategoryData
+                            id = {category_id}
+                            name = {category_name}
+                            />
+                        </div>
+                        <div className="col s4 ">
+                        <Search 
+                        type={recipes}
+                        category_id={category_id}
+                        />
+                        </div>
+                    <div/>
+                    </div>
+                    </div>
                       <div className="row">
                     {
                         recipes && recipes.length > 0?
@@ -72,17 +92,24 @@ render(){
                                 />
                                 <DeleteRecipe
                                 id = {item.id}
+                                category_id = {category_id}
                                 />
                                 <CreateRecipes
                                 id = {category_id}
                                 category_name = {category_name}
                                 />
                             </div>
-                        ): <div> Awww.. its too lonely here (; <br/>Lets add some recipes....<br/>
-                              <Link to={`/create_recipes/${this.props.match.params.id}`}>create here </Link>
+                        ): <div> <h3>Awww.. its too lonely here (; </h3><br/> <h4>Lets add some recipes.... </h4><br/>
+                              <CreateRecipes
+                                id = {category_id}
+                                category_name = {category_name}
+                                />
                          </div>
                     }
                 </div>
+                {/* <Pagination
+                  type="recipes"
+                  /> */}
             </div>
         </div>
       </div>

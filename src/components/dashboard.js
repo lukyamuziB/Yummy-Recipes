@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect } from 'react-redux';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import _ from 'lodash';
+import toastr from 'toastr';
 
 import {fetchCategories} from '../actions/fetchCategories';
 import NoCategories from './noCategories';
@@ -13,6 +14,7 @@ import Recipes from './recipesPage';
 import Navbar from './navbar';
 import CreateRecipes from './createRecipes2';
 import Pagination from './Pagination';
+import Search from './search';
 
 
 const CategoryCard = (props)=> (
@@ -24,7 +26,6 @@ const CategoryCard = (props)=> (
                     </div>
                     <div className="card-content">
                       <span className="card-title activator grey-text text-darken-4"> {props.name} <i className="material-icons right">more_vert</i></span>
-                      <p>Click category card for more options</p>
                     </div>
                     <div className="card-reveal">
                       <span className="card-title grey-text text-darken-4">{props.name}<i className="material-icons right">close</i></span>
@@ -42,18 +43,59 @@ const CategoryCard = (props)=> (
 );
 
 class Dashboard extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+        query:false,
+        category:[],
+        a:""
+    };
+}
+
+
+    searcher = () => {
+      this.props.fetchCategories(`?q=`)   
+    }
+
+
+    queried = (e) => {
+      this.setState({query:e.target.value})
+    }
+
+    result = () => {
+      const categoriesToBeUsed = this.props.categories.filter((category) => _.toLower(category.name)
+      .includes(_.toLower(this.state.query))).map((category) => category)
+      this.setState({category:categoriesToBeUsed})
+      console.log("jjjj", this.state.category)
+      console.log(categoriesToBeUsed)
+    }
+
 
    componentDidMount(){
      this.props.fetchCategories()
+     this.setState({a:"hfjlk"})
+     console.log(this.state.a)
      
    }
 
 
   render(){
-       window.$(document).ready(function() {
-        window.$('.modal').modal();
-        });
-          const {categories} = this.props;  ``
+    if (localStorage.getItem('logedIn')) {
+      toastr.info("Login first to access dashboard")
+      return <Redirect to="/login" />;
+    }
+
+    window.$(document).ready(function() {
+    window.$('.modal').modal();
+    });
+
+          const {categories} = this.props;
+          // console.log("oooo", categories)
+          // const categoriesToBeUsed = categories
+          console.log("???????",this.state.category)
+          const categoriesToBeUsed = this.state.category.filter((category) => _.toLower(category.name)
+          .includes(_.toLower(this.state.query))).map((category) => category)
+
         return(
           <div>
              <div> 
@@ -62,11 +104,30 @@ class Dashboard extends Component {
              <Navbar/>
               <div className="in-container">
                 <div className="container">
-                <CreateCategory/>
+                <div className="row">
+                   <div className="col s4">
+                   <p>Welcome to your yummy recipes account<br/>
+                   Click on a category card to continue or 
+                   create one if you don't have one yet</p>
+                   </div>
+                   <div className="col s4"><CreateCategory/></div>
+                   <div className="col s4">
+                    {/* <Search type="categories"/> */}
+                    <form >
+                      <div className="row">
+                        <div class="input-field">
+                          <i class="material-icons prefix">search</i>
+                          <input onClick={this.searcher} onChange={this.queried} onInput={this.result} id="icon_prefix" type="search" class="validate"/>
+                          <label for="icon_prefix">Search Categories</label>
+                        </div>
+                      </div>
+                    </form>
+                     </div>
+                </div>
                 <div className="row">
                     { 
-                      categories && categories.length>0 ?
-                      categories.map(item =>
+                      categoriesToBeUsed && categoriesToBeUsed.length>0 ?
+                      categoriesToBeUsed.map(item =>
                         <div>
                       < CategoryCard 
                       key={item.id}
@@ -92,7 +153,7 @@ class Dashboard extends Component {
                   </div>
                   <Pagination
                   type = "categories"
-                  />
+                  /> 
                  </div>
                 </div>
               </div>

@@ -2,13 +2,15 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import {fetchCategories} from '../actions/fetchCategories';
+import {fetchRecipes} from '../actions/fetchRecipes';
 
 class Pagination extends Component{
     
     setClassPrevious(){
-        if(this.props.page == 1 &&  this.props.pages == 1){
+        const {page, pages} = this.props
+        if(page === 1 &&  pages === 1){
             return "waves-effect waves-light btn disabled"
-        }else if(this.props.page == 1 && this.props.pages > 1){
+        }else if(page === 1 && pages > 1){
             return "waves-effect waves-light btn disabled"
         }else{
             return "waves-effect waves-light btn"
@@ -16,7 +18,8 @@ class Pagination extends Component{
     }
 
     setClassNext(){
-        if(this.props.page == this.props.pages){
+        const {page, pages} = this.props
+        if(this.props.page === this.props.pages){
             return "waves-effect waves-light btn disabled"
         }else{
             return "waves-effect waves-light btn"
@@ -24,20 +27,27 @@ class Pagination extends Component{
     }
 
     nextPage = () => {
-            const {page} = this.props
+            const {page, fetchCategories, fetchRecipes, type} = this.props
             let next_page = page+1
-            if (this.props.type == "categories"){
-            this.props.fetchCategories(`?page=${next_page}`)
+            if (type === "categories"){
+            fetchCategories(`?page=${next_page}`)
+        }else{
+            fetchRecipes()
         }
     }
 
     previousPage = () => {
-            let previous_page = this.props.page-1
-            this.props.fetchCategories(`?page=${previous_page}`)
+            const {page, fetchCategories,fetchRecipes, type} = this.props
+            let previous_page = page-1
+            if(type === "categories"){
+                fetchCategories(`?page=${previous_page}`)
+            }else{
+                fetchRecipes()
+            }
+            
     }
     
     render(){
-        console.log(this.props)
         return(
             <div>
             <ul className="pagination">
@@ -58,4 +68,4 @@ function mapStateToProps(state, ownProps){
     }
   }
   
-  export default connect(mapStateToProps, {fetchCategories}) (Pagination);
+  export default connect(mapStateToProps, {fetchCategories, fetchRecipes}) (Pagination);

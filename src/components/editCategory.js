@@ -37,11 +37,15 @@ class EditCategory extends Component{
         );
     }
     
-
     onSubmit(values, id){
-        this.props.editCategories(values, this.props.id).then(() => 
-            this.props.history.push("/dashboard"));
-            window.location.reload()
+        this.props.editCategories(values, this.props.id)
+        .then(() => {
+            console.log(this.props)
+            this.props.history.push("/dashboard")
+            // window.location.reload()
+        })
+          
+            // window.location.reload()
     }
    
     render(){
@@ -97,5 +101,5 @@ export default reduxForm({
     form:'EditCategoryForm'
     
 }) (
-    connect(null,{editCategories})(EditCategory)
+    connect(null,{editCategories})(withRouter(EditCategory))
 );

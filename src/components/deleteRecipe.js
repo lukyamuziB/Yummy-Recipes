@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
+import toastr from 'toastr';
 
 
 import deleteRecipe from '../actions/deleteRecipesAction';
@@ -8,8 +9,15 @@ import deleteRecipe from '../actions/deleteRecipesAction';
 class DeleteCategory extends Component{
 
 deleteRecipes = (id) => {
-    this.props.deleteRecipe(this.props.id).then(()=>
-        window.location.reload())
+    this.props.deleteRecipe(this.props.id)
+    .then(()=>{
+       this.props.history.push(`/view_recipes/${this.props.category_id}`)
+       
+    }
+) 
+window.location.reload()
+toastr.info("sampling this")
+    
 }
 
     render(){
@@ -17,8 +25,9 @@ deleteRecipes = (id) => {
             <div>
              <div id={`modal2${this.props.id}`} class="modal">
               <div class="modal-content">
-              {this.props.id}
-                <h5> Are you sure want to delete this Recipe? </h5>
+              {this.props. category_id}
+                <h5> Are you sure want to delete this Recipe? </h5><hr/>
+                <p> This can't be undone </p>
                 <button onClick = {this.deleteRecipes}> Delete </button>
                 <p className="modal-action modal-close waves-effect waves-green btn-flat"> Cancel  </p>
               </div>
@@ -28,4 +37,4 @@ deleteRecipes = (id) => {
     }
 }
 
-export default connect(null, {deleteRecipe})(DeleteCategory)
+export default connect(null, {deleteRecipe})(withRouter(DeleteCategory))

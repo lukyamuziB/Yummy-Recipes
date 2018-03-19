@@ -11,11 +11,12 @@ class Navbar extends Component {
       this.props.userLogout()
       .then(() => { 
       localStorage.clear()
+      localStorage.setItem('logedIn', false)
       this.props.history.push("/") 
-   });   // window.location.reload()
+   });  
     }
 
-    render(){
+    render(){       
         return(
             <div className="row">
             <div className="col s12 m4 l2"><p></p></div>
@@ -24,7 +25,7 @@ class Navbar extends Component {
                         <div className="nav-wrapper black-text text-darken-2">
                           <a href="/dashboard" className="brand-logo"><span className="black-text text-darken-2">Yummy Recipes </span></a>
                           <ul id="nav-mobile" className="right hide-on-med-and-down">
-                            <li> <button onClick={this.logOutUser}>  <span className="black-text text-darken-2">Logout</span> </button> </li>
+                            <li> <button className=" btn-small amber lighten-2" onClick={this.logOutUser}>  <span className="black-text text-darken-2">Logout</span> </button> </li>
                             <li> <Link to="/dashboard"><span className="black-text text-darken-2"> Home </span> </Link></li>
                           </ul>
                         </div>

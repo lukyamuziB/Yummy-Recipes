@@ -24,11 +24,11 @@ export function editUnsuccessful(values){
 
 
 export  function editCategories(values, id){
-    
     return function(dispatch){
         return axios.put(`${ROOT_URL}/categories/${id}`, values, {headers})
         .then((response) => {
-            toastr.info(response.response.data.Message)
+            // console.log("Successfully updated category")
+            toastr.info("Successfully updated category")
             dispatch(editSuccessful(response.data));
         })
         .catch((error) => {

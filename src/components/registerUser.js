@@ -24,7 +24,6 @@ class RegisterUser extends Component {
     }
 
     onSubmit(values){
-        console.log(values);
         this.props.registerUser(values)
         .then(() => {
             this.props.history.push("/login")
@@ -39,7 +38,8 @@ class RegisterUser extends Component {
             <div className="in-container">
               <div className="inner">
                 <div className="container">
-                <p> Register Here</p>
+                <div className="container">
+                <h5> Register Here</h5> <br/>
                         <form onSubmit = {handleSubmit(this.onSubmit.bind(this))}>
                             <Field
                                 label="Name"
@@ -69,6 +69,7 @@ class RegisterUser extends Component {
                             <br/> Alreday Have an Account? 
                             <Link to="/login"> Login Here </Link>
                     </form>
+                </div>
                 </div>
               </div>
             </div>

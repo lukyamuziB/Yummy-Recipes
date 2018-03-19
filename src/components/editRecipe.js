@@ -41,7 +41,7 @@ class EditRecipe extends Component{
         console.log(values)
         this.props.editRecipes(values, this.props.id).then(() => 
             this.props.history.push(`/view_recipes/${this.props.category_id}`));
-            window.location.reload()
+            // window.location.reload()
     }
    
     render(){
@@ -99,5 +99,5 @@ export default reduxForm({
     form:'EditRecipeForm',
     
 }) (
-    connect(null,{editRecipes})(EditRecipe)
+    connect(null,{editRecipes})(withRouter(EditRecipe))
 );

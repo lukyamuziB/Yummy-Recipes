@@ -24,8 +24,8 @@ export const login = (values) => {
     return function (dispatch) {
             return axios.post(`${ROOT_URL}/auth/login`, values)
             .then((response) => {
+             localStorage.clear()
              localStorage.setItem('token', response.data.token);
-             localStorage.setItem('isLoggedIn', true);
              toastr.info(response.response.data.Message, {timeOut: 3000})
             dispatch(loginSuccess(response.data.token));
           }

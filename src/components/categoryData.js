@@ -14,7 +14,7 @@ const CategoryData = (props) => (
             </div>
             <div className="col s10">
             <span className="black-text">
-               <h5> {props.name} </h5> <hr/> Add recipes to this Category <br/>
+               <h5> {props.name} Category </h5> <hr/> Add recipes to this Category <br/>
                     <a class="btn-floating btn-small waves-effect waves-light pulse
                     modal-trigger" href={`#modal4${props.id}`}>
                         <i class=" small material-icons "> add_circle </i> 

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import toastr from 'toastr';
 
 import {ROOT_URL} from '../index';
 import * as types from '../actions/actionTypes';
@@ -26,8 +27,10 @@ export function fetchCategories(params=''){
         .then((response) => {
             dispatch(categoriesExist(response.data))
         })
-        .catch((xhr) => {
-            dispatch(categoriesDontExist(xhr))
+        .catch((error) => {
+            if(error.response){
+            dispatch(categoriesDontExist(error))
+            }
         });
     };
 }
