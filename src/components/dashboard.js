@@ -14,7 +14,7 @@ import Recipes from './recipesPage';
 import Navbar from './navbar';
 import CreateRecipes from './createRecipes2';
 import Pagination from './Pagination';
-import Search from './search';
+
 
 const CategoryCard = props => (
   <div>
@@ -96,7 +96,6 @@ class Dashboard extends Component {
 
   clearr = () => {
     this.setState({ search: false });
-    console.log('blaaaah');
     this.props.fetchCategories();
   };
 
@@ -110,9 +109,9 @@ class Dashboard extends Component {
       return <Redirect to="/login" />;
     }
 
-    window.$(document).ready(function () {
-      window.$('.modal').modal();
-    });
+    // window.$(document).ready(function () {
+    //   window.$('.modal').modal();
+    // });
 
     let { categories } = this.props;
 
