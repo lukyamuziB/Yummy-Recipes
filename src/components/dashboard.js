@@ -109,10 +109,6 @@ class Dashboard extends Component {
       return <Redirect to="/login" />;
     }
 
-    // window.$(document).ready(function () {
-    //   window.$('.modal').modal();
-    // });
-
     let { categories } = this.props;
 
     if (this.state.search === true) {

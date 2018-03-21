@@ -78,10 +78,6 @@ class Recipes extends Component {
       toastr.info('Login first to view your Recipes');
       return <Redirect to="/login" />;
     }
-
-    // window.$(document).ready(function () {
-    //   window.$('.modal').modal();
-    // });
     const { categoryName, categoryId } = this.props;
     let { recipes } = this.props;
 
