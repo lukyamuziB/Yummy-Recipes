@@ -1,21 +1,25 @@
 import React from 'react';
 import Enzyme, { mount, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { BrowserRouter, MemoryRouter } from 'react-router-dom';
+import ReactDom from 'react-dom';
+import configureMockStore from 'redux-mock-store';
+import { MemoryRouter } from 'react-router-dom';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import configureMockStore from 'redux-mock-store';
 import renderer from 'react-test-renderer';
 
-import Login from '../../components/loginUser';
+import RegisterUser from '../../components/registerUser';
 
-describe('<Login/>', () => {
+Enzyme.configure({ adapter: new Adapter() });
+
+describe('<RegisterUser />', () => {
   const div = document.createElement('div');
   const store = configureMockStore([thunk])({
-    categories: {},
+    user: {},
   });
   const props = {
-    login: jest.fn(() => Promise.resolve('login')),
+    registerUser: jest.fn(() => Promise.resolve('register')),
+    validata: jest.fn(),
     onSubmit: jest.fn(),
     history: { push: jest.fn() },
     match: {
@@ -24,22 +28,19 @@ describe('<Login/>', () => {
       },
     },
   };
-  const component = shallow(
-    <BrowserRouter>
-      <Login />
-    </BrowserRouter>);
   it('should render without crashing', () => {
-    expect(component).toHaveLength(1);
-  });
-  it('should render without crashing', () => {
-    expect(component).toHaveLength(1);
+    <Provider store={store}>
+      <MemoryRouter>
+        <RegisterUser {...props} />
+      </MemoryRouter>
+    </Provider>;
   });
   it('renders fully', () => {
     const tree = renderer.create(
       mount(
         <Provider store={store}>
           <MemoryRouter>
-            <Login {...props} />
+            <RegisterUser {...props} />
           </MemoryRouter>
         </Provider>,
       ),
@@ -47,4 +48,3 @@ describe('<Login/>', () => {
     expect(tree).toMatchSnapshot();
   });
 });
-

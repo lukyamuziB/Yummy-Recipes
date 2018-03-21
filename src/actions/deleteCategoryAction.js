@@ -6,14 +6,12 @@ import * as types from '../actions/actionTypes';
 
 const headers = { Authorization: `Bearer ${localStorage.getItem('token')}` };
 
-
 export function deleteSuccessful(values) {
   return {
     type: types.DELETE_SUCCESSFUL,
     payload: values,
   };
 }
-
 
 export default function deleteCategory(id) {
   return function (dispatch) {

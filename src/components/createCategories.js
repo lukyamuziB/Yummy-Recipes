@@ -24,7 +24,6 @@ class CreateCategory extends Component {
     this.props.createCategories(values).then(() => {
       toastr.info('successfully created');
         <Redirect to="/dashboard" />;
-    //   this.props.history.push('/dashboard');
     });
     window.location.reload();
     toastr.info('successfully created ', { timeOut: 4000 });

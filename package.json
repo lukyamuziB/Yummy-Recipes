@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "coveralls": "^3.0.0",
+    "istanbul-api": "1.2.2",
+    "istanbul-reports": "1.1.4",
     "lodash": "^4.17.5",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

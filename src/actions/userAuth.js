@@ -4,7 +4,6 @@ import toastr from 'toastr';
 import { ROOT_URL } from '../index';
 import * as types from './actionTypes';
 
-
 export function loginFails(result) {
   return { type: types.FAILED_LOGIN, result };
 }
@@ -18,7 +17,6 @@ export function logoutSuccessful(result) {
     type: types.SUCCESSFUL_LOGOUT, result,
   };
 }
-
 
 export const login = (values) => {
   return function (dispatch) {
