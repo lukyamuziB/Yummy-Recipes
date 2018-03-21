@@ -49,12 +49,14 @@ class Login extends Component {
                   <h5> Login Here</h5> <br />
                   <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                     <Field
+                      id="username"
                       label="Username"
                       name="username"
                       type="text"
                       component={this.renderField}
                     />
                     <Field
+                      id="password"
                       label="Password"
                       name="password"
                       type="password"
@@ -82,7 +84,6 @@ function mapStateToProps(state, ownProps) {
 
 export default reduxForm({
   form: 'LoginForm',
-
 })(
   connect(mapStateToProps, { login })(Login),
 );

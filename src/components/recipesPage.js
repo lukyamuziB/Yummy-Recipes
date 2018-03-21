@@ -65,7 +65,6 @@ class Recipes extends Component {
   clearr = () => {
     const id = this.props.match.params.id;
     this.setState({ search: false });
-    console.log('blaaaah');
     this.props.fetchRecipes(id);
   };
 
@@ -79,10 +78,6 @@ class Recipes extends Component {
       toastr.info('Login first to view your Recipes');
       return <Redirect to="/login" />;
     }
-
-    window.$(document).ready(function () {
-      window.$('.modal').modal();
-    });
     const { categoryName, categoryId } = this.props;
     let { recipes } = this.props;
 
@@ -187,8 +182,8 @@ function mapStateToProps(state, ownProps) {
   const { recipes, name, id } = state.recipes;
   return {
     recipes: recipes,
-    category_name: name,
-    category_id: id,
+    categoryName: name,
+    categoryId: id,
   };
 }
 
