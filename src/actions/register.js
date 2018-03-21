@@ -18,7 +18,6 @@ export function registerFailed(values) {
   };
 }
 
-
 export default function registerUser(values) {
   return function (dispatch) {
     return axios.post(`${ROOT_URL}/auth/register`, values)

@@ -13,8 +13,8 @@ class EditCategory extends Component {
 
   handleInitialize() {
     const initData = {
-      "name": this.props.name,
-      "description": this.props.description,
+      name: this.props.name,
+      description: this.props.description,
     };
     this.props.initialize(initData);
   }
@@ -44,7 +44,7 @@ class EditCategory extends Component {
   }
 
   render() {
-    console.log("jhbdfjhbfdhbvhbdfh")
+    console.log('jhbdfjhbfdhbvhbdfh');
     const { handleSubmit } = this.props;
     return (
       <div>

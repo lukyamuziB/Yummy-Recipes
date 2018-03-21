@@ -1,10 +1,8 @@
 import axios from 'axios';
 import toastr from 'toastr';
 
-
 import { ROOT_URL } from '../index';
 import * as types from '../actions/actionTypes';
-
 
 const headers = { Authorization: `Bearer ${localStorage.getItem('token')}` };
 

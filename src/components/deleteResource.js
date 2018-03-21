@@ -9,7 +9,6 @@ class DeleteCategory extends Component {
 deleteCategories = (id) => {
   this.props.deleteCategory(this.props.id).then(() =>
     this.props.history.push('/dashboard'));
-  // window.location.reload()
 }
 
 render() {
