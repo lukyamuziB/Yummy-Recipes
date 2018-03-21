@@ -1,0 +1,291 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Recipes /> renders fully 1`] = `
+<div>
+  <div
+    className="landing-container"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col s12 m4 l2"
+      >
+        <p />
+      </div>
+      <div
+        className="col s12 m4 l8"
+      >
+        <p />
+        <nav
+          className="amber lighten-2"
+        >
+          <div
+            className="nav-wrapper black-text text-darken-2"
+          >
+            <a
+              className="brand-logo"
+              href="/dashboard"
+            >
+              <span
+                className="black-text text-darken-2"
+              >
+                Yummy Recipes
+              </span>
+            </a>
+            <ul
+              className="right hide-on-med-and-down"
+              id="nav-mobile"
+            >
+              <li>
+                 
+                <button
+                  className=" btn-small amber lighten-2"
+                  onClick={[Function]}
+                >
+                   
+                  <span
+                    className="black-text text-darken-2"
+                  >
+                    Logout
+                  </span>
+                   
+                </button>
+                 
+              </li>
+              <li>
+                 
+                <a
+                  href="/dashboard"
+                  onClick={[Function]}
+                >
+                  <span
+                    className="black-text text-darken-2"
+                  >
+                     Home 
+                  </span>
+                   
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div
+        className="col s12 m4 l2"
+      >
+        <p />
+      </div>
+    </div>
+    <div
+      className="in-container"
+    >
+      <div
+        className="container"
+      >
+        <div>
+          <div
+            className="row"
+          >
+            <div
+              className="col s8 "
+            >
+              <div>
+                <div
+                  className="row"
+                >
+                  <div
+                    className="col s12 m8 offset-m2 l6 offset-l3"
+                  >
+                    <div
+                      className="card-panel grey lighten-5 z-depth-1"
+                    >
+                      <div
+                        className="row valign-wrapper"
+                      >
+                        <div
+                          className="col s2"
+                        >
+                          <img
+                            alt=""
+                            className="circle responsive-img"
+                            src="http://cdn.skim.gs/image/upload/v1456338503/msi/spices_superfood_bmm3yr.jpg"
+                          />
+                        </div>
+                        <div
+                          className="col s10"
+                        >
+                          <span
+                            className="black-text"
+                          >
+                            <h5>
+                               
+                               Category 
+                            </h5>
+                             
+                            <hr />
+                             Add recipes to this Category 
+                            <br />
+                            <a
+                              className="btn-floating btn-small waves-effect waves-light pulse modal-trigger"
+                              href="#modal4undefined"
+                            >
+                              <i
+                                className="small material-icons"
+                              >
+                                 add_circle 
+                              </i>
+                            </a>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className="col s4 "
+            >
+              <form>
+                <div
+                  className="row"
+                >
+                  <div
+                    className="input-field"
+                  >
+                    <i
+                      className="material-icons prefix"
+                    >
+                      search
+                    </i>
+                    <input
+                      className="validate"
+                      id="icon_prefix"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      onInput={[Function]}
+                      type="search"
+                    />
+                    <label
+                      htmlFor="icon_prefix"
+                    >
+                      Search Categories
+                    </label>
+                  </div>
+                </div>
+              </form>
+              <div>
+                <button
+                  className="btn btn-samll blue"
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons left"
+                  >
+                    clear_all
+                  </i>
+                  Clear Search
+                </button>
+              </div>
+            </div>
+            <div />
+          </div>
+        </div>
+        <div
+          className="row"
+        >
+          <div>
+             
+            <h5>
+              Awww.. its too lonely here (; 
+            </h5>
+            <br />
+            <h4>
+              Either you haven't created any recipes or no recipes match you query
+            </h4>
+            <br />
+            <div>
+              <div>
+                <div
+                  className="modal modal-fixed-footer"
+                  id="modal4undefined"
+                >
+                  <div
+                    className="modal-content"
+                  >
+                    <div
+                      className="conatiner"
+                    >
+                      <h5>
+                         Add Recipe to 
+                         Category
+                      </h5>
+                      <form
+                        onSubmit={[Function]}
+                      >
+                        <div
+                          className="form-group %{touched && error ? 'has-danger':''}"
+                        >
+                          <lable>
+                            Name
+                          </lable>
+                          <input
+                            className="form-control"
+                            name="name"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onDragStart={[Function]}
+                            onDrop={[Function]}
+                            onFocus={[Function]}
+                            type="text"
+                            value=""
+                          />
+                          
+                        </div>
+                        <div
+                          className="form-group %{touched && error ? 'has-danger':''}"
+                        >
+                          <lable>
+                            Description
+                          </lable>
+                          <input
+                            className="form-control"
+                            name="description"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onDragStart={[Function]}
+                            onDrop={[Function]}
+                            onFocus={[Function]}
+                            type="text"
+                            value=""
+                          />
+                          
+                        </div>
+                        <button
+                          type="submit"
+                        >
+                           Create Recipe 
+                        </button>
+                      </form>
+                      <div
+                        className="modal-footer"
+                      >
+                        <p
+                          className="modal-action modal-close waves-effect waves-green btn-flat "
+                        >
+                          Cancel
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

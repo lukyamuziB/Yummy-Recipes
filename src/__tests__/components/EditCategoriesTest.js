@@ -8,46 +8,35 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 
-
-import Dashboard from '../../components/dashboard';
+import EditCategory from '../../components/editCategory';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('<Dashboard/>', () => {
-  const div = document.createElement('div');
+describe('<EditCategory />', () => {
   const store = configureMockStore([thunk])({
     categories: {},
   });
+
   const props = {
-    fetchCategories: jest.fn(() => Promise.resolve('categories')),
+    editCategories: jest.fn(() => Promise.resolve('editCatgeories')),
+    onSubmit: jest.fn(),
+    validate: jest.fn(),
+    renderField: jest.fn(),
+    handleInitialize: jest.fn(),
     history: { push: jest.fn() },
     match: {
-      param: {
+      params: {
         id: 1,
       },
     },
   };
-
-  // test that the componet renders as expected
   it('should render without crashing', () => {
     const { enzymeWrapper } = mount(
       <Provider store={store}>
         <MemoryRouter>
-          <Dashboard {...props} />
+          <EditCategory{...props} />
         </MemoryRouter>
-      </Provider>);
-  });
-  // snapshot test for the recipes page
-  it('renders fully', () => {
-    const tree = renderer.create(
-      mount(
-        <Provider store={store}>
-          <MemoryRouter>
-            <Dashboard {...props} />
-          </MemoryRouter>
-        </Provider>,
-      ),
-    ).toJSON();
-    expect(tree).toMatchSnapshot();
+      </Provider>,
+    );
   });
 });

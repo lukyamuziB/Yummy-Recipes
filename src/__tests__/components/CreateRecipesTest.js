@@ -8,52 +8,38 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 
-import Recipes from '../../components/recipesPage';
+import CreateRecipe from '../../components/createRecipes2';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('<Recipes />', () => {
+describe('<CreateRecipe />', () => {
   const store = configureMockStore([thunk])({
-    recipes: {},
-    categoryName: 'name',
-    categoryId: 1,
+    categories: {},
   });
   const props = {
-    fetchRecipes: jest.fn(() => Promise.resolve('fetchRecipes')),
+    createRecipes: jest.fn(() => Promise.resolve('fetchRecipes')),
     history: { push: jest.fn() },
     match: {
-      params: {
+      param: {
         id: 1,
       },
     },
   };
-
-  // test that the componet renders as expected
   it('should render without crashing', () => {
     const { enzymeWrapper } = mount(
       <Provider store={store}>
         <MemoryRouter>
-          <Recipes {...props} />
+          <CreateRecipe {...props} />
         </MemoryRouter>
       </Provider>,
     );
   });
-  it('should render without crashing', () => {
-    expect(mount(
-      <Provider store={store}>
-        <MemoryRouter>
-          <Recipes {...props} />
-        </MemoryRouter>
-      </Provider>,
-    )).toHaveLength(1);
-  });
-  // snapshot test for the recipes page
   it('renders fully', () => {
     const tree = renderer.create(
       mount(
         <Provider store={store}>
           <MemoryRouter>
-            <Recipes {...props} />
+            <CreateRecipe {...props} />
           </MemoryRouter>
         </Provider>,
       ),
@@ -61,4 +47,3 @@ describe('<Recipes />', () => {
     expect(tree).toMatchSnapshot();
   });
 });
-
