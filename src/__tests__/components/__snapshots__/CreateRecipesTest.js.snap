@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CreateRecipe /> renders fully 1`] = `
+<div>
+  <div>
+    <div
+      className="modal modal-fixed-footer"
+      id="modal4undefined"
+    >
+      <div
+        className="modal-content"
+      >
+        <div
+          className="conatiner"
+        >
+          <h5>
+             Add Recipe to 
+             Category
+          </h5>
+          <form
+            onSubmit={[Function]}
+          >
+            <div
+              className="form-group %{touched && error ? 'has-danger':''}"
+            >
+              <lable>
+                Name
+              </lable>
+              <input
+                className="form-control"
+                name="name"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onDragStart={[Function]}
+                onDrop={[Function]}
+                onFocus={[Function]}
+                type="text"
+                value=""
+              />
+              
+            </div>
+            <div
+              className="form-group %{touched && error ? 'has-danger':''}"
+            >
+              <lable>
+                Description
+              </lable>
+              <input
+                className="form-control"
+                name="description"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onDragStart={[Function]}
+                onDrop={[Function]}
+                onFocus={[Function]}
+                type="text"
+                value=""
+              />
+              
+            </div>
+            <button
+              type="submit"
+            >
+               Create Recipe 
+            </button>
+          </form>
+          <div
+            className="modal-footer"
+          >
+            <p
+              className="modal-action modal-close waves-effect waves-green btn-flat "
+            >
+              Cancel
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
