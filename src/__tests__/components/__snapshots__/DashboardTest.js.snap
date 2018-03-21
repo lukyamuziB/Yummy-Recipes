@@ -1,0 +1,293 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Dashboard/> renders fully 1`] = `
+<div>
+  <div />
+  <div
+    className="landing-container"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col s12 m4 l2"
+      >
+        <p />
+      </div>
+      <div
+        className="col s12 m4 l8"
+      >
+        <p />
+        <nav
+          className="amber lighten-2"
+        >
+          <div
+            className="nav-wrapper black-text text-darken-2"
+          >
+            <a
+              className="brand-logo"
+              href="/dashboard"
+            >
+              <span
+                className="black-text text-darken-2"
+              >
+                Yummy Recipes
+              </span>
+            </a>
+            <ul
+              className="right hide-on-med-and-down"
+              id="nav-mobile"
+            >
+              <li>
+                 
+                <button
+                  className=" btn-small amber lighten-2"
+                  onClick={[Function]}
+                >
+                   
+                  <span
+                    className="black-text text-darken-2"
+                  >
+                    Logout
+                  </span>
+                   
+                </button>
+                 
+              </li>
+              <li>
+                 
+                <a
+                  href="/dashboard"
+                  onClick={[Function]}
+                >
+                  <span
+                    className="black-text text-darken-2"
+                  >
+                     Home 
+                  </span>
+                   
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div
+        className="col s12 m4 l2"
+      >
+        <p />
+      </div>
+    </div>
+    <div
+      className="in-container"
+    >
+      <div
+        className="container"
+      >
+        <div
+          className="row"
+        >
+          <div
+            className="col s4"
+          >
+            <p>
+              Welcome to your yummy recipes account
+              <br />
+              Click on a category card to continue or create one if you don't have one yet
+            </p>
+          </div>
+          <div
+            className="col s4"
+          >
+            <div>
+              add category
+              <div>
+                <a
+                  className="btn-floating btn-large waves-effect waves-light green modal-trigger pulse"
+                  href="#modal1"
+                >
+                   
+                  <i
+                    className="material-icons"
+                  >
+                    add
+                  </i>
+                </a>
+                <div
+                  className="modal modal-fixed-footer"
+                  id="modal1"
+                >
+                  <div
+                    className="modal-content"
+                  >
+                    <div
+                      className="conatiner"
+                    >
+                      <h5>
+                         Create New Category 
+                      </h5>
+                      <form
+                        onSubmit={[Function]}
+                      >
+                        <div
+                          className="form-group %{touched && error ? 'has-dangetr':''}"
+                        >
+                          <label>
+                            Name
+                          </label>
+                          <input
+                            className="form-control"
+                            name="name"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onDragStart={[Function]}
+                            onDrop={[Function]}
+                            onFocus={[Function]}
+                            type="text"
+                            value=""
+                          />
+                          
+                        </div>
+                        <div
+                          className="form-group %{touched && error ? 'has-dangetr':''}"
+                        >
+                          <label>
+                            Description
+                          </label>
+                          <input
+                            className="form-control"
+                            name="description"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onDragStart={[Function]}
+                            onDrop={[Function]}
+                            onFocus={[Function]}
+                            type="text"
+                            value=""
+                          />
+                          
+                        </div>
+                        <button
+                          type="submit"
+                        >
+                           Create 
+                        </button>
+                      </form>
+                      <div
+                        className="modal-footer"
+                      >
+                        <a
+                          className="modal-action modal-close waves-effect waves-green btn-flat "
+                          href="/dashboard"
+                          onClick={[Function]}
+                        >
+                          Cancel
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="col s4"
+          >
+            <form>
+              <div
+                className="row"
+              >
+                <div
+                  className="input-field"
+                >
+                  <i
+                    className="material-icons prefix"
+                  >
+                    search
+                  </i>
+                  <input
+                    className="validate"
+                    id="icon_prefix"
+                    onChange={[Function]}
+                    onClick={[Function]}
+                    onInput={[Function]}
+                    type="search"
+                  />
+                  <label
+                    htmlFor="icon_prefix"
+                  >
+                    Search Categories
+                  </label>
+                </div>
+              </div>
+            </form>
+            <div>
+              <button
+                className="btn btn-samll blue"
+                onClick={[Function]}
+              >
+                <i
+                  className="material-icons left"
+                >
+                  clear_all
+                </i>
+                Clear Search
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          className="row"
+        >
+          <div>
+             
+            <div
+              className="landing-container"
+            >
+              <div
+                className="in-container"
+              >
+                <h2>
+                   Ooopss.... 
+                  <br />
+                   You don't have any categories yet! 
+                </h2>
+              </div>
+            </div>
+             
+          </div>
+        </div>
+        <div>
+          <ul
+            className="pagination"
+          >
+            <button
+              className="waves-effect waves-light btn"
+              onClick={[Function]}
+            >
+               
+              <i
+                className="material-icons left"
+              >
+                arrow_back
+              </i>
+              Previous
+            </button>
+            <button
+              className="waves-effect waves-light btn disabled"
+              onClick={[Function]}
+            >
+              <i
+                className="material-icons right"
+              >
+                arrow_forward
+              </i>
+              Next
+            </button>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

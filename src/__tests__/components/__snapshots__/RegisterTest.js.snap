@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RegisterUser /> renders fully 1`] = `
+<div
+  className="landing-container"
+>
+  <div
+    className="in-container"
+  >
+    <div
+      className="inner"
+    >
+      <div
+        className="container"
+      >
+        <div
+          className="container"
+        >
+          <h5>
+             Register Here
+          </h5>
+           
+          <br />
+          <form
+            onSubmit={[Function]}
+          >
+            <div
+              className="form-group %{touched && error ? 'has-dangetr':''}"
+            >
+              <lable>
+                Name
+              </lable>
+              <input
+                className="form-control"
+                name="name"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onDragStart={[Function]}
+                onDrop={[Function]}
+                onFocus={[Function]}
+                type="text"
+                value=""
+              />
+              
+            </div>
+            <div
+              className="form-group %{touched && error ? 'has-dangetr':''}"
+            >
+              <lable>
+                Username
+              </lable>
+              <input
+                className="form-control"
+                name="username"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onDragStart={[Function]}
+                onDrop={[Function]}
+                onFocus={[Function]}
+                type="text"
+                value=""
+              />
+              
+            </div>
+            <div
+              className="form-group %{touched && error ? 'has-dangetr':''}"
+            >
+              <lable>
+                Email
+              </lable>
+              <input
+                className="form-control"
+                name="email"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onDragStart={[Function]}
+                onDrop={[Function]}
+                onFocus={[Function]}
+                type="email"
+                value=""
+              />
+              
+            </div>
+            <div
+              className="form-group %{touched && error ? 'has-dangetr':''}"
+            >
+              <lable>
+                Password
+              </lable>
+              <input
+                className="form-control"
+                name="password"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onDragStart={[Function]}
+                onDrop={[Function]}
+                onFocus={[Function]}
+                type="password"
+                value=""
+              />
+              
+            </div>
+            <button
+              className="btn btn-primary"
+              type="submit"
+            >
+              Submit
+            </button>
+            <br />
+             Alreday Have an Account?
+            <a
+              href="/login"
+              onClick={[Function]}
+            >
+               Login Here 
+            </a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
