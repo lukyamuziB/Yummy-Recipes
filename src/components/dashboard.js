@@ -16,19 +16,19 @@ import CreateRecipes from './createRecipes2';
 import Pagination from './Pagination';
 
 
-const CategoryCard = props => (
+export const CategoryCard = props => (
   <div>
     <div className="col s4">
       <div className="card">
         <div className="card-image waves-effect waves-block waves-light">
           <img
             className="activator"
-            src="http://alluretouch.com/wp-content/uploads/2015/09/spoon-of-coffee.jpg"
+            src="https://foodiefactor.com/wp-content/uploads/2017/07/coffee-spoon-1000x667.jpg"
             alt=" "
           />
         </div>
         <div className="card-content">
-          <span className="card-title activator grey-text text-darken-4">
+          <span id="catName" className="card-title activator grey-text text-darken-4">
             {' '}
             {props.name} <i className="material-icons right">more_vert</i>
           </span>
@@ -108,7 +108,6 @@ class Dashboard extends Component {
       toastr.info('Login first to access dashboard');
       return <Redirect to="/login" />;
     }
-
     let { categories } = this.props;
 
     if (this.state.search === true) {

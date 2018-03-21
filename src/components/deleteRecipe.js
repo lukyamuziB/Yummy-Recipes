@@ -20,7 +20,7 @@ deleteRecipes = (id) => {
 render() {
   return (
     <div>
-      <div id={`modal2${this.props.id}`} className="modal">
+      <div id={`modal90${this.props.id}`} className="modal">
         <div className="modal-content">
           {this.props.category_id}
           <h5> Are you sure want to delete this Recipe? </h5><hr />

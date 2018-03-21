@@ -24,8 +24,8 @@ const RecipesCard = props => (
           <p>{props.description}</p>
         </div>
         <div className="card-action">
-          <a className="modal-trigger" href={`#modal3${props.id}`}>EDIT RECIPE</a>
-          <a className="modal-trigger" href={`#modal2${props.id}`}>DELETE RECIPE</a>
+          <a className="modal-trigger" href={`#modal7${props.id}`}>EDIT RECIPE</a>
+          <a className="modal-trigger" href={`#modal90${props.id}`}>DELETE RECIPE</a>
         </div>
       </div>
     </div>
@@ -78,6 +78,7 @@ class Recipes extends Component {
       toastr.info('Login first to view your Recipes');
       return <Redirect to="/login" />;
     }
+
     const { categoryName, categoryId } = this.props;
     let { recipes } = this.props;
 
@@ -135,19 +136,20 @@ class Recipes extends Component {
                 {
                   recipes && recipes.length > 0 ?
                       recipes.map(item =>
-                        <div>
+                        <div key={item.id}>
+
                           <RecipesCard
-                            key={item.id}
                             id={item.id}
                             name={item.name}
                             description={item.description}
                           />
                           <EditRecipe
+                            key={item.id}
                             id={item.id}
                             category_id={this.props.match.params.id}
-                            name={item.name}
-                            description={item.description}
+                            recipe={item}
                           />
+                          {item.name}
                           <DeleteRecipe
                             id={item.id}
                             category_id={categoryId}

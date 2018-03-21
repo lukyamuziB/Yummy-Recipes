@@ -7,17 +7,23 @@ import { Field, reduxForm } from 'redux-form';
 import { editRecipes } from '../actions/editRecipesAction';
 
 class EditRecipe extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: this.props.recipe.name,
+      description: this.props.recipe.description,
+    };
+  }
   componentDidMount() {
     this.handleInitialize();
   }
 
   handleInitialize() {
-    const initData = {
-      "name": this.props.name,
-      "description": this.props.description,
+    const initialData = {
+      name: this.state.name,
+      description: this.state.description,
     };
-
-    this.props.initialize(initData);
+    this.props.initialize(initialData);
   }
 
   renderField(field) {
@@ -25,7 +31,7 @@ class EditRecipe extends Component {
     const className = 'form-group %{touched && error ? \'has-dangetr\':\'\'}';
     return (
       <div className={className}>
-        <lable>{field.label}</lable>
+        <label>{field.label}</label>
         <input
           className="form-control"
           type={field.type}
@@ -37,33 +43,31 @@ class EditRecipe extends Component {
   }
 
   onSubmit(values, id) {
-    console.log(values);
     this.props.editRecipes(values, this.props.id).then(() =>
       this.props.history.push(`/view_recipes/${this.props.category_id}`));
-    // window.location.reload()
+    window.location.reload();
   }
 
   render() {
+    console.log(this.props.recipe.name, this.props.id);
     const { handleSubmit } = this.props;
     return (
       <div>
         <div>
-          <div id={`modal3${this.props.id}`} className="modal modal-fixed-footer">
+          <div id={`modal7${this.props.id}`} className="modal modal-fixed-footer">
             <div className="modal-content">
-              <h3> Edit Recipe </h3>
-              <form initialValues={{ name: 'US' }} onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+              <h3> Edit Recipe {this.props.id} </h3>
+              <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <Field
                   label="Name"
                   name="name"
                   type="text"
-                  value={this.props.names}
                   component={this.renderField}
                 />
                 <Field
                   label="Description"
                   name="description"
                   type="text"
-                  value={this.props.descriptions}
                   component={this.renderField}
                 />
                 <button type="submit"> Update Recipe </button>

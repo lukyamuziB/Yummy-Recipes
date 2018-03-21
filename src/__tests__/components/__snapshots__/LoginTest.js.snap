@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Login/> renders fully 1`] = `
+<div
+  id="Login"
+>
+  <div
+    className="landing-container"
+  >
+    <div
+      className="in-container"
+    >
+      <div
+        className="inner"
+      >
+        <div
+          className="container"
+        >
+          <div
+            className="container"
+          >
+            <h5>
+               Login Here
+            </h5>
+             
+            <br />
+            <form
+              onSubmit={[Function]}
+            >
+              <div
+                className="form-group %{touched && error ? 'has-dangetr':''}"
+              >
+                <lable>
+                   
+                  Username
+                   
+                </lable>
+                <input
+                  className="form-control"
+                  name="username"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onDragStart={[Function]}
+                  onDrop={[Function]}
+                  onFocus={[Function]}
+                  type="text"
+                  value=""
+                />
+                
+              </div>
+              <div
+                className="form-group %{touched && error ? 'has-dangetr':''}"
+              >
+                <lable>
+                   
+                  Password
+                   
+                </lable>
+                <input
+                  className="form-control"
+                  name="password"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onDragStart={[Function]}
+                  onDrop={[Function]}
+                  onFocus={[Function]}
+                  type="password"
+                  value=""
+                />
+                
+              </div>
+              <button
+                className="btn btn-primary"
+                type="submit"
+              >
+                login
+              </button>
+               
+              <br />
+              <br />
+               Don't have an account yet?  
+              <a
+                href="/register"
+                onClick={[Function]}
+              >
+                 Register here 
+              </a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
