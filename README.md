@@ -5,6 +5,7 @@
 
 # yummy recipes webapp
 Yummy Recipes is a unique webapp that helps you manage the recipes you love, you can create an account, create categories and recipes. Edit and delete as you wish
+Click [Here](https://react-cp4.herokuapp.com/) to access the app
 
 ## Installation and Running
 ### Requirements
